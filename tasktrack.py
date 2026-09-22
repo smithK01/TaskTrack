@@ -16,17 +16,14 @@ def display_menu():
 
 def add_task(tasks):
     """Prompt the user for a task and add it to the task list."""
-    while(True):
-        print("Enter a new task: ")
-        task = input().strip()
-        # check if input empty
-        if task.isspace() == True or not task:
-            print("task is blank!")
-            continue
-        else:
-            tasks.append(task)
-            print(f"new task '{task}' added successfully.")
-            break
+    task = input("Enter a new task: ").strip()
+    # check if input empty
+    if not task:
+        print("A task cannot be empty.")
+    else:
+        tasks.append(task)
+        print(f"new task '{task}' added successfully.")
+        
     return
 
 
