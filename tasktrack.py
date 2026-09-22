@@ -18,8 +18,7 @@ def add_task(tasks):
     """Prompt the user for a task and add it to the task list."""
     while(True):
         print("Enter a new task: ")
-        task = input()
-        task.strip()
+        task = input().strip()
         # check if input empty
         if task.isspace() == True or not task:
             print("task is blank!")
@@ -58,6 +57,12 @@ def load_tasks(filename):
 
     return tasks
 
+def save_tasks(tasks, filename):
+    """Save all tasks to a text file."""
+    with open(filename, "w") as file:
+        for task in tasks:
+            file.write(f"{task}\n")
+
 def main():
     """Run the TaskTrack menu until the user chooses to exit."""
     tasks = load_tasks(TASKS_FILE)
@@ -70,6 +75,7 @@ def main():
             view_tasks(tasks)
         elif choice == "2":
             add_task(tasks)
+            save_tasks(tasks, TASKS_FILE)
         elif choice == "3":
             print("Goodbye!")
             break
