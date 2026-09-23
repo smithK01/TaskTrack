@@ -10,6 +10,15 @@ A program that displays a menu to view and add tasks. Tasks are then saved to a 
 
 -view tasks form tasks.txt file
 
+## Version Control
+
+This project uses Git to manage version control of the repository locally, and GitHub as it's remote repository.
+
+Ex:
+
+Commit code changes to the local repository,
+Push accumulated commits from local repository to the online repository,
+Pull changes from the online repository to the local repository.
 
 ## Requirements
 
