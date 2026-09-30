@@ -11,7 +11,8 @@ def display_menu():
     print("\nTaskTrack Menu")
     print("1. View tasks")
     print("2. Add task")
-    print("3. Exit")
+    print("3. Remove a task")
+    print("4. Exit")
 
 
 def add_task(tasks):
@@ -60,6 +61,42 @@ def save_tasks(tasks, filename):
         for task in tasks:
             file.write(f"{task}\n")
 
+def remove_task(tasks):
+    """Prompt the user to select and remove a task.
+        Return True when a task is removed and False otherwise.
+        """
+    if not tasks:
+        print("no tasks are available to remove.")
+        return False
+
+    view_tasks(tasks)
+
+    # input, and data type check   
+    while(True):
+        try:
+            selection = int(input("Enter the number of the task to remove, or " 
+            "type '-1' to exit to menu: ").strip())
+        except ValueError:
+            print("Please enter a valid number/integer.")
+            selection = 0
+        else:
+            # if user types -1
+            if selection == -1:
+                print("Returning to menu.")
+                return(False)
+            # if user types any int not in tasks[]
+            elif selection < 1 or selection > len(tasks):
+                print("No task with that number found.")
+                continue
+            # if user types any int in tasks[]
+            else:
+                remove_conf = tasks[selection - 1] # for confirmation mesg.
+                print(f"Removing task {selection}, {remove_conf}...")
+                tasks.pop(selection - 1)
+                print(f"Removed: {remove_conf}, from tasks list.")
+                break
+    return True
+
 def main():
     """Run the TaskTrack menu until the user chooses to exit."""
     tasks = load_tasks(TASKS_FILE)
@@ -74,6 +111,9 @@ def main():
             add_task(tasks)
             save_tasks(tasks, TASKS_FILE)
         elif choice == "3":
+            if remove_task(tasks): # if changes are made
+                save_tasks(tasks, TASKS_FILE)
+        elif choice == "4":
             print("Goodbye!")
             break
         else:
