@@ -1,6 +1,3 @@
-complete ICA04
-Review GitHub commands
-Update the TaskTrack README
-test persistent storage
-Push tasktrack.py to GitHub
-this is a new task
+complete ICA05
+create an issue for tasktrack repo
+create a pull request for tasktrack repo
