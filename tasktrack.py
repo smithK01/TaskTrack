@@ -69,6 +69,22 @@ def save_tasks(tasks, filename):
             file.write(f"{task}\n")
 
 
+def remove_task_by_number(tasks, task_number):
+    """Remove a task by its displayed number and return the removed task.
+    
+    Return None when the task number is outside the valid range.
+    """
+
+    # if task_number is less than or equal to 0, or larger than len(tasks), return None
+    if task_number <= 0 or task_number > len(tasks):
+        return None
+    
+    else:
+        return tasks.pop(task_number - 1)
+
+
+
+
 def remove_task(tasks):
     """Prompt the user to select and remove a task.
 
@@ -94,26 +110,23 @@ def remove_task(tasks):
         except ValueError:
             print("Please enter a valid number/integer.")
             continue
+
         else:
             if selection == -1:
                 print("Returning to menu.")
                 return False
             
-            # if user types any int not in tasks[]
-            elif selection < 1 or selection > len(tasks):
-                print("No task with that number found.")
-                continue
-
-            # if user types any int in tasks[]
             else:
-                # confirmation mesg.
-                remove_conf = tasks[selection - 1]
+                # if integer input, and not returning to menu:
+                removed_task = remove_task_by_number(tasks, selection)
 
-                print(f"Removing task {selection}, {remove_conf}...")
-                tasks.pop(selection - 1)
-                print(f"Removed: {remove_conf}, from tasks list.")
+                if removed_task is None:
+                    print("Invalid selection")
+                    continue
 
-                break
+                else:
+                    print(f"Task: {removed_task} has been removed.")
+                    break
 
     return True
 
