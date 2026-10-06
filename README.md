@@ -27,21 +27,59 @@ Pull changes from the online repository to the local repository.
 ## Project Files
 
 - tasktrack.py - [The python file that displays the menu in the terminal, alowing the user to input and view tasks]
+- test_tasktrack.py - [The python file that runs the tests for tasktrack.py]
 - tasks.txt - [The data file that stores tasks on each new line]
-- .gitignore - [The information that Git uses to manage the repository]
+- .gitignore - [Contains filenames that Git ignores and does not add to the local/online repository]
+- REFLECTION.md - [The required reflection for ICA04, describing ## 1. Local and Remote Repositories, Connecting and Pushing, Cloning, Fetching and Pulling, and Focused Commits]
+
 
 ## Running the Program
 
 open command terminal
 navigate to directory containing tasktrack.py and tasks.txt
 run tasktrack.py
-enter desired menu number to either view, or add tasks to the task list.
+enter desired menu number to either view, add, or remove tasks from the task list.
 
 Ex:
 
 cmd.exe
 cd C:/Users/%yourusernamehere%/documents
 python tasktrack.py
+
+
+## Testing the Program
+
+TaskTrack uses pytest to test logic. The tests are located in test_tasktrack.py and currently only verifies return values and task lists for the remove_task_by_number() function.
+
+### Setting up the testing environment
+
+open command terminal inside the TaskTrack project folder
+run python -m venv .venv
+run .\.venv\Scripts\Activate.ps1
+run python -m pip install pytest
+
+### Running the tests
+
+when inside of the virtual environment (ie: the terminal is headed by (.venv))
+run python -m pytest -v
+
+if you open a new terminal, or otherwise are not in the virtual environment
+run .\.venv\Scripts\Activate.ps1
+to return to the virtual environment. Then you can resume testing.
+
+### Current Tests
+
+- removing the first task
+- removing a middle task
+- removing the last task
+- reject input 0
+- reject input > task list length
+- removing from an empty list
+
+    valid selections should remove and return said task. Invalid selections return None and do not change the task list.
+
+    All six current tasks should pass.
+
 
 ## How task persistence works
 
@@ -53,46 +91,48 @@ tasks are taken from user input, stripped, and written to tasks.txt. When writin
 TaskTrack Menu
 1. View tasks
 2. Add task
-3. Exit
+3. Remove a task
+4. Exit
 Choose an option: 1
 
 Tasks:
-1. complete ICA04
-2. Review GitHub commands
-3. Update the TaskTrack README
-4. test persistent storage
-5. Push tasktrack.py to GitHub
+1. complete ICA05
+2. create an issue for tasktrack repo
+3. create a pull request for tasktrack repo
 
 TaskTrack Menu
 1. View tasks
 2. Add task
-3. Exit
+3. Remove a task
+4. Exit
 Choose an option: 2
-Enter a new task: I'm adding a new task!
-new task 'I'm adding a new task!' added successfully.
+Enter a new task: this is a task!
+new task 'this is a task!' added successfully.
 
 TaskTrack Menu
 1. View tasks
 2. Add task
-3. Exit
-Choose an option: 1
+3. Remove a task
+4. Exit
+Choose an option: 3
 
 Tasks:
-1. complete ICA04
-2. Review GitHub commands
-3. Update the TaskTrack README
-4. test persistent storage
-5. Push tasktrack.py to GitHub
-6. I'm adding a new task!
+1. complete ICA05
+2. create an issue for tasktrack repo
+3. create a pull request for tasktrack repo
+4. this is a task!
+Enter the number of the task to remove, or type '-1' to exit to menu: 4
+Task: this is a task! has been removed.
 
 TaskTrack Menu
 1. View tasks
 2. Add task
-3. Exit
-Choose an option: 3
+3. Remove a task
+4. Exit
+Choose an option: 4
 Goodbye!
 
 
-## Current Limitation
+## Current Limitations
 
-unable to remove tasks without manually doing so from the tasks.txt file.
+None known currently
